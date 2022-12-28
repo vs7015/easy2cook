@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "903034389136",
+    "project_id": "easy2cook-4afc5",
+    "storage_bucket": "easy2cook-4afc5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:903034389136:android:60ddfa5f760714f1ff4e15",
+        "android_client_info": {
+          "package_name": "com.example.easy2cook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "903034389136-d8msqbr26eedtiqo95qqgpj96p0l32d8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxq3ouHIoxupnNyhG8FQjVDBeR-PTldZM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "903034389136-d8msqbr26eedtiqo95qqgpj96p0l32d8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
