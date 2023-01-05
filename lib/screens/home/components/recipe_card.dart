@@ -1,5 +1,7 @@
 import 'package:easy2cook/constants.dart';
 import 'package:easy2cook/models/RecipeBundle.dart';
+import 'package:easy2cook/services/database.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:easy2cook/size_config.dart';
 import 'package:easy2cook/screens/home/components/categories.dart';
@@ -7,19 +9,22 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class RecipeCard extends StatelessWidget {
   final RecipeBundle recipeBundle;
-  // final Function press;
   final VoidCallback press;
 
-  const RecipeCard(
-      {super.key, required this.recipeBundle, required this.press});
+  const RecipeCard({
+    super.key,
+    required this.recipeBundle,
+    required this.press,
+  });
   @override
   Widget build(BuildContext context) {
     double defaultSize = SizeConfig.defaultSize;
+
     return GestureDetector(
       onTap: press,
       child: Container(
           decoration: BoxDecoration(
-            color: recipeBundle.color,
+            color: Colors.green,
             borderRadius: BorderRadius.circular(defaultSize * 1.8),
           ),
           child: Row(
@@ -32,37 +37,26 @@ class RecipeCard extends StatelessWidget {
                     children: <Widget>[
                       Spacer(),
                       Text(
-                        recipeBundle.title,
+                        recipeBundle.name,
                         style: TextStyle(
                           fontSize: defaultSize * 2.2,
                           color: Colors.white,
                         ),
                       ),
-                      SizedBox(
-                        height: defaultSize * 0.5,
-                      ),
-                      Text(
-                        recipeBundle.description,
-                        style: TextStyle(
-                          color: Colors.white54,
-                        ),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
                       Spacer(),
                       buildInfoRow(
                         defaultSize,
                         iconSrc: "assets/icons/time-clock.svg",
-                        text: "${recipeBundle.time} minut",
+                        text: "${recipeBundle.pTime} minutes",
                       ),
                       SizedBox(
-                        height: defaultSize * 0.5,
+                        height: defaultSize,
                       ),
-                      /*buildInfoRow(
+                      buildInfoRow(
                         defaultSize,
-                        iconSrc: "assets/icons/time-clock.svg",
+                        iconSrc: "assets/icons/star_rate.svg",
                         text: "${recipeBundle.complexity}",
-                      ),*/
+                      ),
                       Spacer(),
                     ],
                   ),
@@ -72,12 +66,15 @@ class RecipeCard extends StatelessWidget {
                 width: defaultSize * 0.5,
               ),
               AspectRatio(
-                  aspectRatio: 0.7,
-                  child: Image.asset(
-                    recipeBundle.imageSrc,
-                    fit: BoxFit.cover,
-                    alignment: Alignment.centerLeft,
-                  )),
+                aspectRatio: 0.7,
+                child: Image.network(
+                  /// spremeni sliko
+                  //"assets/images/beef.jpg",
+                  recipeBundle.img,
+                  fit: BoxFit.cover,
+                  alignment: Alignment.center,
+                ),
+              ),
             ],
           )),
     );
