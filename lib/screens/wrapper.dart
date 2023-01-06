@@ -5,7 +5,7 @@ import 'package:easy2cook/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:easy2cook/screens/search/search_screen.dart';
-import 'package:easy2cook/screens/search/components/ingredient_list_provider.dart';
+import 'package:easy2cook/screens/search/components/search_recipe_list.dart';
 
 import 'package:easy2cook/models/user.dart';
 

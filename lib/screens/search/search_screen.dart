@@ -19,6 +19,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:easy2cook/screens/home/components/recipe_list.dart';
 import 'package:provider/provider.dart';
 import 'package:easy2cook/models/IngredientsBundle.dart';
+import 'package:easy2cook/models/RecipeBundle.dart';
 
 class SearchScreen extends StatelessWidget {
   final AuthService _auth = AuthService();
@@ -27,13 +28,17 @@ class SearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
 
-    return StreamProvider<List<IngredientsBundle>?>.value(
-      value: DatabaseService().ingredients,
+    return StreamProvider<List<RecipeBundle>?>.value(
+      value: DatabaseService().recipes,
       initialData: null,
-      child: Scaffold(
-        appBar: buildAppBar(),
-        body: Search(),
-        bottomNavigationBar: MyBottomNavBar(),
+      child: StreamProvider<List<IngredientsBundle>?>.value(
+        value: DatabaseService().ingredients,
+        initialData: null,
+        child: Scaffold(
+          appBar: buildAppBar(),
+          body: Search(),
+          bottomNavigationBar: MyBottomNavBar(),
+        ),
       ),
     );
   }
